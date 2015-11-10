@@ -35,5 +35,25 @@ as
 	)
 	return number;
 
+	/** Boolean version of positive sentiment
+	* @author Morten Egan
+	* @param string The string you want to check
+	* @return boolean True if positive sentiment
+	*/
+	function is_positive (
+		string						in				varchar2
+	)
+	return boolean;
+
+	/** Boolean version of negative sentiment
+	* @author Morten Egan
+	* @param string The string you want to check
+	* @return boolean True if negative sentiment
+	*/
+	function is_negative (
+		string						in				varchar2
+	)
+	return boolean;
+
 end sentiment_ninja;
 /

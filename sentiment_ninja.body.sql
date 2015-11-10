@@ -85,6 +85,62 @@ as
 	
 	end sentiment;
 
+	function is_positive (
+		string						in				varchar2
+	)
+	return boolean
+	
+	as
+	
+		l_ret_val			boolean := false;
+	
+	begin
+	
+		dbms_application_info.set_action('is_positive');
+
+		if sentiment(string) > 0 then
+			l_ret_val := true;
+		end if;
+	
+		dbms_application_info.set_action(null);
+	
+		return l_ret_val;
+	
+		exception
+			when others then
+				dbms_application_info.set_action(null);
+				raise;
+	
+	end is_positive;
+
+	function is_negative (
+		string						in				varchar2
+	)
+	return boolean
+	
+	as
+	
+		l_ret_val			boolean;
+	
+	begin
+	
+		dbms_application_info.set_action('is_negative');
+
+		if sentiment(string) < 0 then
+			l_ret_val := true;
+		end if;
+	
+		dbms_application_info.set_action(null);
+	
+		return l_ret_val;
+	
+		exception
+			when others then
+				dbms_application_info.set_action(null);
+				raise;
+	
+	end is_negative;
+
 begin
 
 	dbms_application_info.set_client_info('sentiment_ninja');
