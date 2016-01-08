@@ -36,7 +36,7 @@ as
 	
 	end tokenize;
 
-	function sentiment (
+	function afinn_sentiment (
 		string						in				varchar2
 	)
 	return number
@@ -54,7 +54,7 @@ as
 	
 	begin
 	
-		dbms_application_info.set_action('sentiment');
+		dbms_application_info.set_action('afinn_sentiment');
 
 		for token in split_string loop
 			l_token_count := token.rownum;
@@ -73,6 +73,61 @@ as
 		end if;
 
 		sentiment_score := l_ret_val;
+	
+		dbms_application_info.set_action(null);
+	
+		return l_ret_val;
+	
+		exception
+			when others then
+				dbms_application_info.set_action(null);
+				raise;
+	
+	end afinn_sentiment;
+
+	function vader_sentiment (
+		string						in				varchar2
+	)
+	return number
+	
+	as
+	
+		l_ret_val			number := 0;
+	
+	begin
+	
+		dbms_application_info.set_action('vader_sentiment');
+	
+		dbms_application_info.set_action(null);
+	
+		return l_ret_val;
+	
+		exception
+			when others then
+				dbms_application_info.set_action(null);
+				raise;
+	
+	end vader_sentiment;
+
+	function sentiment (
+		string						in				varchar2
+		, sentiment_engine			in				varchar2 default 'AFINN'
+	)
+	return number
+	
+	as
+	
+		l_ret_val					number := 0;
+	
+	begin
+	
+		dbms_application_info.set_action('sentiment');
+
+		if sentiment_engine = 'AFINN' then
+			l_ret_val := afinn_sentiment(string);
+		elsif sentiment_engine = 'VADER' then
+			l_ret_val := vader_sentiment(string);
+		end if;
 	
 		dbms_application_info.set_action(null);
 	

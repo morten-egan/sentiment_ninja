@@ -32,6 +32,7 @@ as
 	*/
 	function sentiment (
 		string						in				varchar2
+		, sentiment_engine			in				varchar2 default 'AFINN'
 	)
 	return number;
 
