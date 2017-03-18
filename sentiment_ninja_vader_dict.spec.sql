@@ -11,7 +11,9 @@ as
 	p_version		varchar2(50) := '0.0.1';
 
 	type word_list	is table of number index by varchar2(100);
-	vader_dict		word_list;
+	vader_dict					word_list;
+	vader_negate_dict		word_list;
+	vader_booster_dict	word_list;
 
 end sentiment_ninja_vader_dict;
 /

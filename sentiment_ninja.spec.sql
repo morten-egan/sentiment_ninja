@@ -14,6 +14,12 @@ as
 	sentiment_comparative		number;
 	sentiment_score				number;
 
+	b_incr								number := 0.293;
+	b_decr								number := -0.293;
+	c_incr								number := 0.733;
+
+	n_scalar							number := -0.74;
+
 	/** Tokenize a word
 	* @author Morten Egan
 	* @param string The string to tokenize
